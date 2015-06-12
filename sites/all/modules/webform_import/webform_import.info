@@ -1,0 +1,12 @@
+name = Webform Import
+description = Enables the upload of webform values from a delimited file.
+core = 7.x
+package = Webform
+dependencies[] = webform
+
+; Information added by Drupal.org packaging script on 2014-02-12
+version = "7.x-1.3"
+core = "7.x"
+project = "webform_import"
+datestamp = "1392190106"
+

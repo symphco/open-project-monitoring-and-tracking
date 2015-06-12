@@ -1,0 +1,177 @@
+/* Dashboard Styling */
+
+#dashboard_main .block-content a {
+	display: inline-block;
+	padding: 10px;
+	border-radius: 5px; 
+	background-color: #008eb1;
+	color:white; 
+	font-size: 15px; 
+	border: 1px solid white; 
+}
+#dashboard_main .block-content a:hover {
+	background:white;
+	color: #008eb1; 
+	border: 1px solid #008eb1;
+}
+#dashboard_sidebar #block-node-recent div.node-author { display: none; } 
+
+/* Styling the Multi-Subproject Edit Screen */
+
+/* Views Exposed Filter Form */
+
+/* spacing/responsive */
+@media (min-width: 600px) {
+	#views-exposed-form-edit-subprojects-with-editablefields-page div.views-exposed-widget { height: 52px; }
+}
+#views-exposed-form-edit-subprojects-with-editablefields-page label[for=edit-field-municipality-by-psgc-tid] { display: none; }
+#views-exposed-form-edit-subprojects-with-editablefields-page input#edit-field-municipality-by-psgc-tid { display: none; }
+#views-exposed-form-edit-subprojects-with-editablefields-page .form-item.lgu-tweaks-module-add select { background: white; }
+#views-exposed-form-edit-subprojects-with-editablefields-page div.select-region,
+#views-exposed-form-edit-subprojects-with-editablefields-page div.select-province,
+#views-exposed-form-edit-subprojects-with-editablefields-page div.select-municipality {
+	float: left;
+	padding: 0 1em 0 0;
+}
+#views-exposed-form-edit-subprojects-with-editablefields-page .views-exposed-form .views-exposed-widget .form-submit { 
+	background: #000;
+	top: 0;
+	color: #ffc425;
+	text-transform: uppercase;
+	text-indent: 0;
+	width: auto;
+	padding: 6px 20px;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	box-shadow: none;
+	border: 0px;
+	border-radius: 0px;
+	margin-top: 1.1em;
+	transition: .25s ease-in-out;
+}
+#views-exposed-form-edit-subprojects-with-editablefields-page .views-exposed-form .views-exposed-widget .form-submit:hover {
+	background: #ffc425;
+	color: #000;
+	border: 1px solid #000;
+}
+
+@media (max-width: 820px) {
+	#views-exposed-form-edit-subprojects-with-editablefields-page #edit-field-project-tid-wrapper { width: 100%; }
+	#views-exposed-form-edit-subprojects-with-editablefields-page #edit-field-project-tid-wrapper select { width: 100%; }	
+}
+
+/* colors/style */
+
+/* header and filters */
+.view-edit-subprojects-with-editablefields .view-header,
+.view-edit-subprojects-with-editablefields .view-filters {
+	padding: 0 20px 0 20px;
+	background: #ffc501; 
+	border: 1px solid #e6e6e6;
+}
+
+.view-edit-subprojects-with-editablefields .view-header { border-bottom: 0px; }
+.view-edit-subprojects-with-editablefields .view-filters { border-top: 0px; }
+
+.view-edit-subprojects-with-editablefields .view-header { padding-top: 20px; }
+.view-edit-subprojects-with-editablefields .view-filters { padding-bottom: 20px; }
+.view-edit-subprojects-with-editablefields .views-exposed-form label {
+	margin: 0px;
+	padding: 0px;
+	color: #000;
+	font-weight: bold;
+	font-size: 10px;
+}
+
+/* views content */
+.view-edit-subprojects-with-editablefields div.view-content {
+	padding: 20px; 
+	background: #e6e6e6;
+	margin-top: 20px;
+}
+.view-edit-subprojects-with-editablefields .view-content .form-submit,
+.view-edit-subprojects-with-editablefields .pager-links a {
+	background: #000;
+	top: 0;
+	color: #ffc425;
+	text-transform: uppercase;
+	text-indent: 0;
+	width: auto;
+	padding: 6px 20px;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	box-shadow: none;
+	border: 0px;
+	border-radius: 0px;
+	margin-top: 1.1em;
+	text-shadow: none;
+	transition: .25s ease-in-out;
+}
+.view-edit-subprojects-with-editablefields .view-content .form-submit:hover,
+.view-edit-subprojects-with-editablefields .pager-links a:hover {
+	background: #ffc425;
+	color: #000;
+}
+
+.view-edit-subprojects-with-editablefields .pager ul.pager-links { float: left; }
+.view-edit-subprojects-with-editablefields .pager-links li { background: none; }
+.view-edit-subprojects-with-editablefields .pager-links a { margin: 0 10px 0 10px;   }
+
+.view-edit-subprojects-with-editablefields .pager ul.pager-list { margin-bottom: 10px; }
+.view-edit-subprojects-with-editablefields .pager-list li { background: none; }
+.view-edit-subprojects-with-editablefields .pager-list a,
+.view-edit-subprojects-with-editablefields .pager li.pager-current span { 
+	background: #e6e6e6;
+	top: 0;
+	color: #000;
+	text-indent: 0;
+	width: auto;
+	padding: 6px 10px;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	text-shadow: none;	
+	margin: 0 5px 0 5px;
+}
+.view-edit-subprojects-with-editablefields .pager li.pager-current span { background: none; }
+
+/* views rows */
+.view-edit-subprojects-with-editablefields .views-row { padding: 20px 0 20px 0; }
+.view-edit-subprojects-with-editablefields .form-actions { padding: 0px; border: 0px; background: #e6e6e6; margin-top: 5px; margin-bottom: 10px; visibility: hidden; }
+.view-edit-subprojects-with-editablefields .views-field-field-photo-of-project .form-actions { visibility: visible; }
+.view-edit-subprojects-with-editablefields .fieldset-content { background: #e6e6e6; }
+.view-edit-subprojects-with-editablefields .fieldset-legend { padding: 0 0 0 0; }
+.view-edit-subprojects-with-editablefields input.form-file { background: none; }
+.view-edit-subprojects-with-editablefields .views-row .views-field.views-field-title { padding-left: 0px; }
+.view-edit-subprojects-with-editablefields .views-row .views-field.views-field-title { 
+	font-size: 19px; 
+	padding-bottom: 10px; 
+	background: url("images/plus-minus-icon-tall.png") no-repeat right 10px; 
+}
+.view-edit-subprojects-with-editablefields .views-row .views-field.views-field-title.open {
+	background-position: right -70px;
+}
+.view-edit-subprojects-with-editablefields .views-row .views-field.views-field-title div.subtitle { font-size: 12px; }
+
+/* headers within node */
+.view-edit-subprojects-with-editablefields .views-row .views-field h3 { font-size: 16px; margin-bottom: 15px; margin-top:25px;}
+
+/* floating required marker */
+.view-edit-subprojects-with-editablefields span.form-required { float: left; margin-right:2px;}
+
+.view-edit-subprojects-with-editablefields .ajax-progress { float: none; }
+
+
+/* Collapsible Multieditable Form */
+
+.view-edit-subprojects-with-editablefields .views-row .form-required { display: none; }
+.view-edit-subprojects-with-editablefields .views-row { padding-bottom: 10px; border-bottom: 1px dotted #000;  }
+.view-edit-subprojects-with-editablefields .views-row div.views-field-title { color: #414141; text-transform: uppercase; }
+.view-edit-subprojects-with-editablefields .views-row div.views-field-title:hover { cursor: pointer; color: #666; }
+
+/* Hide Relations from Projects taxonomy term add form */
+
+#taxonomy-form-term fieldset#edit-relations { display: none; }
+

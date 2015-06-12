@@ -1,0 +1,366 @@
+<?php
+/**
+ * @file
+ * A module that adjusts the zoom level on Leaflet map.
+ */
+
+function openlgu_tweaks_leaflet_map_info() {
+  return array(
+    'custom map' =>
+    array(
+      'label' => 'custom map',
+      'description' => t('Leaflet map with custom zoom settings.'),
+      'settings' => array(
+        'dragging' => TRUE,
+        'touchZoom' => TRUE,
+        'scrollWheelZoom' => TRUE,
+        'doubleClickZoom' => TRUE,
+        'zoomControl' => TRUE,
+        'attributionControl' => TRUE,
+        'trackResize' => TRUE,
+        'fadeAnimation' => TRUE,
+        'zoomAnimation' => TRUE,
+        'closePopupOnClick' => TRUE,
+        'layerControl' => FALSE,
+        'maxZoom' => 12,
+        'zoom' => 6,
+      ),
+      'layers' => array(
+	      'layer' => array(
+	        'type' => 'google',
+	        'urlTemplate' => '//mt{s}.googleapis.com/vt?x={x}&y={y}&z={z}',
+	        'options' => array(
+	          'attribution' => '',
+	          'detectRetina' => FALSE,
+	          'subdomains' => array(0, 1, 2, 3),
+	        ),
+	      ),
+      ),
+    ),
+    'another custom map' => 
+    array(
+      'label' => 'anther custom map',
+      'description' => t('Leaflet map with custom zoom settings.'),
+      'settings' => array(
+        'dragging' => TRUE,
+        'touchZoom' => TRUE,
+        'scrollWheelZoom' => TRUE,
+        'doubleClickZoom' => TRUE,
+        'zoomControl' => TRUE,
+        'attributionControl' => TRUE,
+        'trackResize' => TRUE,
+        'fadeAnimation' => TRUE,
+        'zoomAnimation' => TRUE,
+        'closePopupOnClick' => TRUE,
+        'layerControl' => FALSE,
+        'maxZoom' => 12,
+        'zoom' => 6,
+      ),
+      'layers' => array(
+	      'layer' => array(
+	        'type' => 'google',
+	        'urlTemplate' => '//mt{s}.googleapis.com/vt?x={x}&y={y}&z={z}',
+	        'options' => array(
+	          'attribution' => '',
+	          'detectRetina' => FALSE,
+	          'subdomains' => array(0, 1, 2, 3),
+	        ),
+	      ),
+      ),
+    ),
+    
+  );
+}
+
+/**
+ * Adding some markup to the comment form 
+ */
+ 
+function openlgu_tweaks_form_comment_form_alter(&$form, &$form_state) {
+	global $base_url; 
+	$path = arg(0); 
+	if($path == "ajax_comments") :
+		$form['comment_body']['und'][0]['value']['#title'] = "Your Feedback or Comment";
+		$form['field_add_a_photo']['#weight'] = "3";
+		$form['field_comment_embed_video']['#weight'] = "4";
+		$form['message-markup'] = array(
+			'#markup' => "<div class='added-markup'><a href='javascript:void(0)' class='close-button'><span>x</span></a><h3>Submit Your Feedback</h3><p>We value your feedback because testwe believe it is a critical next step towards change. A team of administrators moderates all feedback. Approval times may vary depending on the time of day, but we will get to your comments as soon as possible.</p><div class='sharing-icons'><img src='" . $base_url . "/sites/all/themes/openlgu_custom/images/comments-sharing-icon-facebook.png' alt='Facebook logo' /><img src='" . $base_url . "/sites/all/themes/openlgu_custom/images/comments-sharing-icon-twitter.png' alt='Twitter logo' /><img src='" . $base_url . "/sites/all/themes/openlgu_custom/images/comments-sharing-icon-forward.png' alt='Forward logo' /></div></div>",
+			'#weight' => 0,
+		);
+		$form['flipper-markup'] = array(
+			'#markup' => "<div class='flipper-markup'><a class='add-photo active'>Add a Photo</a> | <a class='embed-video'>Embed Video</a> | <a class='add-kml'>Add a KML File</a></div>",
+			'#weight' => "2"
+		);
+	$form['actions']['submit']['#value'] = "Submit Feedback";
+	endif;
+}
+
+/**
+ * Various Changes to Project Add/Edit form
+ */
+function openlgu_tweaks_form_openlgu_project_node_form_alter(&$form, &$form_state, $form_id) {
+	unset($form['field_project_status']['und']['#options']['_none']);
+	unset($form['field_physical_works']['und']['#options']['_none']);
+	unset($form['field_implementation_mode']['und']['#options']['_none']);
+	$form['field_lgu_memo']['und']['#options']['_none'] = "Not Applicable";
+	$form['field_bid_complete']['und']['#options']['_none'] = "Not Applicable";
+	$form['field_procure_complete']['und']['#options']['_none'] = "Not Applicable";
+	$form['field_physical_complete']['und']['#options']['_none'] = "Not Applicable";
+	$form['field_financial_complete']['und']['#options']['_none'] = "Not Applicable";
+	$form['actions']['submit']['#value'] = "Submit Update";
+	foreach($form['field_project_type_uacs']['und']['#options'] as $key => $option) {
+		if($key == "5380" || $key == "5387") {
+			 unset($form['field_project_type_uacs']['und']['#options'][$key]);
+		} else {
+			$term_info = taxonomy_get_term_by_name($option,"project_type_by_uacs");
+			foreach ($term_info as $term) {
+				$form['field_project_type_uacs']['und']['#options'][$key] = $term->field_project_type_label['und'][0]['value'];
+			}
+		}
+	}
+	// Add a cancel button 
+	$form['actions']['cancel'] = array(
+      '#type'   => 'submit',
+      '#value'  => t('Cancel'),
+      '#access' => TRUE,
+      '#weight' => 15,
+      '#submit' => array('openlgu_tweaks_form_cancel', 'node_form_submit_build_node'),
+      '#limit_validation_errors' => array(),
+    );
+	$form['#validate'][] = "openlgu_tweaks_check_project_add_form";
+	// dpm($form);
+}
+
+/**
+ * Custom cancel button callback.
+ */
+function openlgu_tweaks_form_cancel($form, &$form_state) {
+  $url = $_GET['destination'] ? $_GET['destination'] : 'node/9';
+  drupal_goto($url);
+}
+
+/**
+* Custom Validation for Project Add Form 
+*/
+function openlgu_tweaks_check_project_add_form($form, &$form_state) {
+		
+	// Check that Project ID is a number
+	$project_id = $form_state['values']['field_project_id']['und'][0]['value'];
+	if ($project_id) {
+		if (!(is_numeric($project_id))) {
+			form_set_error('field_project_id', t('ProjectID must be a number.'));
+		}
+	}
+	
+	// Check that Procurement Date is later than Date of Bid Posting 
+	if($form_state['values']['field_procure_date']['und'][0]['value'] != "" && $form_state['values']['field_bid_date']['und'][0]['value'] != "") {
+		$procurement_date = $form_state['values']['field_procure_date']['und'][0]['value'];
+		$bid_posting_date = $form_state['values']['field_bid_date']['und'][0]['value'];
+		if($procurement_date < $bid_posting_date) {
+			form_set_error('field_procure_date',t("Error: Date of Bid Posting must be before Estimated Procurement Date."));
+		}
+	}
+	
+	// Check that % Physical Completion is a percentage -- e.g., numbers between 0 and 100.
+	if($form_state['values']['field_imp_physical']['und'][0]['value'] != "") {
+		if($form_state['values']['field_imp_physical']['und'][0]['value'] < 0 || $form_state['values']['field_imp_physical']['und'][0]['value'] > 100) {
+			form_set_error('field_imp_physical',t("Error: % of Physical Completion must be a number from 0 to 100."));
+		}
+	}
+
+	// Check that % Financial Completion is a percentage -- e.g., numbers between 0 and 100.
+	if($form_state['values']['field_imp_financial']['und'][0]['value'] != "") {
+		if($form_state['values']['field_imp_financial']['und'][0]['value'] < 0 || $form_state['values']['field_imp_financial']['und'][0]['value'] > 100) {
+			form_set_error('field_imp_financial',t("Error: % of Financial Completion must be a number from 0 to 100."));
+		}
+	}
+	
+
+}
+
+/**
+* See if we can adjust the form that Foward Module uses to add info about max 400 characters. 
+*/
+function openlgu_tweaks_form_forward_form_alter(&$form, &$form_state) {
+	$form['message']['message']['#description'] = "Please limit your message to 400 characters or fewer.";
+	$form['message']['message']['#attributes'] = array('maxlength' => 400);
+}
+
+/**
+* Manage AJAX Callback for narrowing down municipality on Projects form, and for getting
+* list of municipalities to auto-populate on homepage search form 
+*/
+function openlgu_tweaks_menu() {
+  // Ajax Callback. Returns provinces for the submitted region.
+  $items['ajax/get_provinces'] = array(
+    'title' => 'Get provinces for submitted region',
+    'page callback' => 'openlgu_tweaks_get_provinces',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  // Ajax Callback. Returns municipalities for the submitted province.
+  $items['ajax/get_municipalities'] = array(
+    'title' => 'Get municipalities for submitted province',
+    'page callback' => 'openlgu_tweaks_get_municipalities',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+ // Ajax Callback. Returns municipalities for the autocomplete field on homepage search
+  $items['ajax/homepageform'] = array(
+    'title' => 'Get municipalities for homepage form',
+    'page callback' => 'openlgu_tweaks_homepageform',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+ // Ajax Callback. Returns PSGC code for selected municipality on homepage search
+  $items['ajax/get_municipality_psgc_code'] = array(
+    'title' => 'Get municipality PSGC for homepage form',
+    'page callback' => 'openlgu_tweaks_get_municipality_psgc',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  // Ajax Callback. Returns Lat and Long from a selected municipality for the Node Add Form 
+  $items['ajax/get_municipality_lat_long'] = array(
+  	'title' => 'Get lat and long from municipality PSGC code',
+  	'page callback' => 'openlgu_tweaks_get_municipality_lat_long',
+  	'access arguments' => array("access content"),
+  	'type' => MENU_CALLBACK,
+  );
+  
+  return $items;
+}
+
+/**
+ * Fetch provinces code and name by code region.
+ */
+function openlgu_tweaks_get_provinces() {
+  $selected_region = $_GET['region'];
+  $sql = "SELECT prov_code, prov_name FROM {lib_provinces} where region_code = '" . $selected_region . "'";
+  $result = db_query($sql);
+  $output = "";
+  foreach($result as $row) {
+	  $output .= "<option value='" . $row->prov_code . "'>" . $row->prov_name . "</option>";
+  }
+	echo $output;
+	drupal_exit();
+}
+
+/**
+ * Fetch municipalities city code and city name by province code.
+ */
+function openlgu_tweaks_get_municipalities() {
+  $selected_province = $_GET['province'];
+  $sql = "SELECT city_code, city_name FROM {lib_cities} where prov_code = '" . $selected_province . "'";
+  $result = db_query($sql);
+  $output = "";
+  foreach($result as $row) {
+	  $output .= "<option value='" . $row->city_code . "'>" . $row->city_name . "</option>";
+  }
+	echo $output;
+	drupal_exit();
+}
+
+/**
+ * Search and fetch city name and province name.
+ */
+function openlgu_tweaks_homepageform() {
+	$text = $_GET['term'];	
+	$sql = "SELECT {lib_cities}.city_name, {lib_provinces}.prov_name FROM {lib_cities} JOIN {lib_provinces} ON {lib_cities}.prov_code = {lib_provinces}.prov_code WHERE {lib_cities}.city_name LIKE '$text%' ORDER BY {lib_cities}.city_name";
+	$result = db_query($sql);
+	$json = '[';
+	$first = true;
+	foreach($result as $row) {
+		if(!$first) { $json .= ','; } else { $first = false; }
+		$json .= '"'.$row->city_name.', '.$row->prov_name.'"';
+	}	
+	$json .= ']';
+	echo $json;
+	drupal_exit();
+}
+
+/**
+ * Fetch city name and code.
+ */
+function openlgu_tweaks_get_municipality_psgc() {
+	$municipality_string = $_GET['municipality'];
+	$comma_pos = strpos($municipality_string,", ");
+	$municipality = substr($municipality_string, 0, $comma_pos);
+	$province = substr($municipality_string, $comma_pos + 2);
+	$sql = "SELECT city_name, city_code from {lib_cities} JOIN {lib_provinces} on {lib_cities}.prov_code = {lib_provinces}.prov_code WHERE {lib_cities}.city_name = '$municipality' AND {lib_provinces}.prov_name = '$province'";
+	$result = db_query($sql);
+	foreach($result as $row){
+		echo $row->city_code;
+	}
+	drupal_exit();
+}
+
+/**
+ * Getting the latitude and longitude of municipality.
+ */
+function openlgu_tweaks_get_municipality_lat_long() {
+	$tid = $_GET['psgc'];
+	if(is_numeric($tid)) {
+		$term = taxonomy_term_load($tid);
+		$lat = $term->field_lat_long['und'][0]['lat'];
+		$lon = $term->field_lat_long['und'][0]['lon'];
+	}
+	echo $lat;
+	echo ",";
+	echo $lon;
+	drupal_exit();
+}
+
+/**
+ * Getting the latitude and longitude of municipality.
+ */
+function openlgu_tweaks_get_status_text($status_code) {
+	if($term_array = taxonomy_get_term_by_name($status_code,"project_type_by_uacs")) {
+		foreach($term_array as $term) {
+			$status_code_label = $term->field_project_type_label['und'][0]['value'];
+		}
+	}
+	if($status_code_label) {
+		$status_code_text = "<span class='project-type-icon project-type-icon-$status_code'></span>";
+	} else {
+		$status_code_text = "<span>n/a</span>";
+	}
+	return $status_code_text;
+}
+
+/**
+ * Fetch status code label of project type.
+ */
+function openlgu_tweaks_get_status_text_clean($status_code) {
+	$term_array = taxonomy_get_term_by_name($status_code,"project_type_by_uacs");
+	foreach($term_array as $term) {
+		$status_code_label = $term->field_project_type_label['und'][0]['value'];
+	}
+	$status_code_text = "$status_code_label";
+	return $status_code_text;
+}
+
+/**
+ * Displaying form selection of BUB Program.
+ */
+function openlgu_tweaks_form_alter(&$form, &$form_state, $form_id){
+	switch($form_id) {
+		case 'views_exposed_form' :
+			if ($form['#id'] == "views-exposed-form-contact-persons-block") {
+				$form['field_contact_person_project_tid']['#options']['0'] = t("Select Program");
+				ksort($form['field_contact_person_project_tid']['#options']);
+			}
+                        if (isset($form['field_project_type_uacs_tid']['#options']) && is_array($form['field_project_type_uacs_tid']['#options'])) {
+                            foreach($form['field_project_type_uacs_tid']['#options'] as $key => $option) {
+                                    if($key == "5380" || $key == "5387") {
+                                             unset($form['field_project_type_uacs_tid']['#options'][$key]);
+                                    } else {
+                                            $term_info = taxonomy_get_term_by_name($option,"project_type_by_uacs");
+                                            foreach ($term_info as $term) {
+                                                    $form['field_project_type_uacs_tid']['#options'][$key] = $term->field_project_type_label['und'][0]['value'];
+                                            }
+                                    }
+                            }
+                        }
+	}
+	
+}

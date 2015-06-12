@@ -1,0 +1,1 @@
+window.tinyMCEPreInit = {"base":"\/wb-opengov-openbub\/sites\/all\/libraries\/tinymce\/jscripts\/tiny_mce","suffix":"","query":""};

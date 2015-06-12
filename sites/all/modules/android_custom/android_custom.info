@@ -1,0 +1,3 @@
+name = Android Custom
+description = A block module custom built for the DILG Android implementation
+core = 7.x

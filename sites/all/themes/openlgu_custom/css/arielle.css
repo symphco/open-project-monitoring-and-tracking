@@ -1,0 +1,424 @@
+/* For Arielle! */
+
+/*
+.page-map .span12 p {
+	font-weight: 500;
+	font-size: 12px;
+}
+*/
+
+/*
+.page-map .span12 p strong {
+	font-weight: 600;
+	font-size: 12px;
+}
+*/
+
+.page-map .span12 .legend {
+	margin-top: 15px;
+}
+
+.page-map .span12 .legend p {
+	font-size: 11px;
+/* 	line-height: 12px; */
+}
+.front .related-news .span3 .views-field-title a {
+	font-weight: 600;
+	font-size: 17px;
+	color: #414142;
+	padding: 16px 0 15px 0;
+	margin: 0;
+	line-height: 20px;
+	text-transform: uppercase;
+	display: block;
+}
+.front .related-news .span3 .views-field-body p {
+	font-size: 14px;
+	color: #464646;
+	padding: 0 0 13px;
+	margin: 0;
+	line-height: 18px;
+}
+.front .related-news .span3 { height: 410px; }
+.front .related-news .span3 .views-field-nothing a {
+	position: absolute;
+	bottom: 0;
+	background: url('../images/plus2.png') 100% 10px no-repeat;
+	display: block;
+	width: 100%;
+	height: auto;
+	border-top: #c2c2c2 solid 1px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 600;
+	color: #acacac;
+	padding: 5px 0 0 0;
+	text-transform: uppercase;
+	margin: 10px 0 0 0;
+	float: left;
+}
+.front .related-news .span3 .views-field-nothing a:hover { color: #000; }
+.page-map .data-pg #data-sb h3 { margin-top: /* 40px */ 8px; }
+
+	textarea, select, input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="time"], input[type="url"], input[type="week"] {
+		padding: 0 10px;
+	}
+	table {
+		width: 100%;
+	}
+	.project.teaser a.link-to-project {
+		padding-bottom: 4px;
+		float: none;
+		display: inline-block;
+		margin-left: 200px; 
+	}
+	.project.teaser div.bottom {
+/* 		text-align: right; */
+	}
+	.front .find_project h2 { margin-top: 2px; }
+	.page-map .span12 p { margin-bottom: 0; }
+	.page-forward input { margin-bottom: 0; }
+	
+	.view-various-news-blocks .orbit-wrapper { max-width: 824px;}
+
+.view-various-news-blocks .orbit-wrapper .views-field-body {
+	position: absolute;
+	bottom: 0;
+	background: rgba(0,0,0,.6);
+	padding: 7px 0;
+	color: #FFF;
+	width: 100%; 
+}
+.view-various-news-blocks .orbit-wrapper .views-field-body .body-title-container h2 {
+	margin: 0;
+}
+.view-various-news-blocks .orbit-wrapper .views-field-body .body-title-container a {
+	color: #FFF;
+	font-weight: 500;
+	font-size: 22px;
+	line-height: 31px;
+	display: block;
+	margin: 0;
+	padding: 0 10px 8px;
+	text-transform: uppercase;
+}
+.view-various-news-blocks .orbit-wrapper .views-field-body .body-title-container p {
+	font-size: 14px;
+	line-height: 1.3em;
+	padding: 0 10px;
+}
+.page-node-11 .featured-2 .row-fluid { margin-bottom: 0; }
+.page-node-11 .span6.recently-container a.more-link { bottom:auto;}
+.page-map .span12 p.disclaimer { margin-top: -25px; margin-bottom: 25px;}
+.front .blog h3.search-title {
+	padding: 0;
+	margin-bottom: 10px;
+	font-weight: 600;
+	font-size: 20px;
+	text-transform: uppercase;
+}
+.front .blog-container #homepagesearch input[type=text] {
+	background-image: url('../images/search_icon.png');
+	background-position: 97% center;
+	background-repeat: no-repeat;
+}
+.front .blog-container #homepagesearch input[type="submit"] {
+	background: #414141;
+	top: 0;
+	color: #ffc425;
+	text-transform: uppercase;
+	text-indent: 0;
+	width: auto;
+	padding: 6px 20px;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+}
+
+/*
+.page-map .span12 .legend p br {
+	margin-bottom: 12px;
+}
+*/
+
+@media screen and (max-width: 1199px){
+	#views-exposed-form-project-list-leaflet-map-page .views-widget label, #views-exposed-form-project-list-leaflet-map-page-1 .views-widget label, #refine-dashboards label {
+		width: 76%;
+	}
+}
+@media screen and (max-width: 979px){
+	.front form#views-exposed-form-projects-search-results-page input[type=submit] {
+		margin-left: -35px;
+	}
+	.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+		width: 500px !important;
+	}
+	.leaflet-popup-content {
+		min-width: 483px;
+	}
+	.project.teaser div.left {
+		width: 60%;
+	}
+	.project.teaser div.right {
+		width: 31%;
+	}
+	.leaflet-popup-content-wrapper {
+		background-size: 100%;
+	}
+	#views-exposed-form-project-list-leaflet-map-page label, #views-exposed-form-project-list-leaflet-map-page-1 label {
+		font-size: 13px;
+		background-size: 8%;
+		background-position: right 5px;
+	}
+	form#views-exposed-form-project-list-leaflet-map-page div.views-exposed-form, form#views-exposed-form-project-list-leaflet-map-page-1 div.views-exposed-form {
+		padding: 10px 15px 0 15px;
+	}
+	#views-exposed-form-project-list-leaflet-map-page .views-widget label, #views-exposed-form-project-list-leaflet-map-page-1 .views-widget label, #refine-dashboards label {
+		font-size: 12px;
+	}
+	.page-projects form#views-exposed-form-projects-search-results-page, .page-projects-search-results form#views-exposed-form-projects-search-results-page {
+		margin-bottom: 1px;
+	}
+	div#header-items-per-page {
+		clear: both;
+	}
+	div.footer_link.resources, div.footer_link.social-media { top: -30px; }
+	.page-node-3180 .span4.sidebar { 
+		clear: both;
+		width: 100%;
+		margin-left: 0;
+	}
+	.view-id-project_list_leaflet_map.view-display-id-page_1 div.item-list {
+		padding-top: 40px;
+	}
+	.container { width: 96%; }
+
+}
+@media screen and (max-width: 949px){
+	#views-exposed-form-project-list-leaflet-map-page .views-widget label, #views-exposed-form-project-list-leaflet-map-page-1 .views-widget label, #refine-dashboards label { width: 73%; }
+}
+@media screen and (max-width: 859px){
+	#views-exposed-form-project-list-leaflet-map-page .views-widget label, #views-exposed-form-project-list-leaflet-map-page-1 .views-widget label, #refine-dashboards label { width: 71%; }
+}
+@media screen and (max-width: 840px){
+	#views-exposed-form-project-list-leaflet-map-page .views-widget label,
+	#views-exposed-form-project-list-leaflet-map-page-1 .views-widget label {
+		font-weight: 500;
+	}
+	ul.primary li a {
+		width: 100%;
+		border-right: none;
+		border-bottom: 4px solid #DDD;
+		font-size: 15px;
+		background-image: /* url('../images/mobile-arrow-down.png') */none;
+		background-repeat: no-repeat;
+		background-position: 96% center;
+	}
+	ul.primary li.active a {
+		background-image: /* url('../images/mobile-arrow-up.png') */none;
+	}
+	div.resp-tabs-container {
+		border-top: none;
+	}
+	ul.primary li {
+		float: none;
+		width: 88%;
+		display: block;
+	}
+	.page-map .span12 .legend p.span3 {
+		margin-bottom: 0;
+	}
+	.views-field-field-slider-caption div.caption-text {
+		position: relative;
+		background: #000;
+	}
+	
+
+}
+@media screen and (max-width: 809px){
+	#views-exposed-form-project-list-leaflet-map-page .views-widget label, #views-exposed-form-project-list-leaflet-map-page-1 .views-widget label, #refine-dashboards label { width: 68%; }
+}
+@media screen and (max-width: 767px){
+	.view-id-recently_approved_projects.view-display-id-page_1 .view-header {
+		margin-right: 0;
+	}
+	.container { width: 96%; }
+	div.footer_link.resources, div.footer_link.social-media { top: -10px; }
+	.footer .footer_right {
+		float: none;
+	}
+	#views-exposed-form-project-list-leaflet-map-page label, #views-exposed-form-project-list-leaflet-map-page-1 label {
+		font-size: 17px;
+		background-size: auto;
+	}
+	#views-exposed-form-project-list-leaflet-map-page .views-widget label, #views-exposed-form-project-list-leaflet-map-page-1 .views-widget label {
+		font-size: 13px;
+	}
+	.contact-tables {
+		width: 100%;
+		overflow-x: scroll;
+	}
+	.page-map .data-pg #data-sb h3 { margin-top: 20px; }
+	.front .related-news .span3 { height: auto; margin-bottom: 40px; }
+	.orbit-wrapper { padding-bottom: 35px; }
+
+}
+@media screen and (max-width: 660px){
+	.content {
+		padding-left: 25px;
+		padding-right: 25px;
+		box-sizing: border-box;
+	}
+	.featured-2 .container .row-fluid.news-hdr {
+		margin-bottom: 10px !important;
+		margin-left: 15px;
+	}
+	.headlines {
+		padding: 0 15px;
+	}
+	.recently {
+		padding-top: 20px;
+	}
+	a.more-link {
+		padding-right: 20px;
+		width: 97%;
+	}
+	.comment-tabs li {
+		width: 88%;
+		display: block;
+		border-right: none;
+		border-bottom: 4px solid #DDD;
+	}
+	.view-all-news-page table td {
+		display: block;
+		width: 97%;
+	}
+	.orbit-wrapper .orbit-caption {
+		position: relative;
+		background: #000;
+	}
+	div.footer_link.resources, div.footer_link.social-media { top: 0; }
+	.contact-tables table td.position { min-width: 0; }
+
+
+}
+
+@media screen and (max-width: 630px){
+	table.respons tr, table.respons th, table.respons td{
+		display: block;
+	}
+	table.respons tr {
+		width: 59%;
+		float: left;
+	}
+	table.respons tr:first-child {
+		width: 40%;
+		float: left;
+	}
+	table.respons th {
+		margin-bottom: 0;
+	}
+	table.respons td {
+		border-bottom: 3px solid #ccc;
+		padding: 11.5px 10px;
+	}
+	.view-id-project_list_leaflet_map.view-display-id-page_1 .view-header {
+		padding-top: 0;
+		top: 35px;
+		width: 90%;
+	}
+	.disclaimer { margin-top: 0; }
+
+}
+
+@media screen and (max-width: 560px){
+	.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+		width: 380px !important;
+	}
+	.leaflet-popup-content{
+		min-width: 364px;
+	}
+	.content { margin-top: 0; }
+	.social { float: none; text-align: right; }
+	.view-id-project_list_leaflet_map {width: 100%; overflow-x: scroll; }
+
+}
+
+@media screen and (max-width: 479px){
+	.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+		width: 280px !important;
+	}
+	.leaflet-popup-content {
+		width: 201px !important;
+		min-width: 262px;
+		height: 340px;
+	}
+	.project.teaser div.left {
+		width: 98%;
+		float: none;
+	}
+	.project.teaser div.right {
+		width: 97%;
+		border-left: none;
+		border-top: 1px solid #e3e3e3;
+		margin-top: 10px;
+		padding-top: 10px;
+		float: none;
+		padding-left: 5px;
+	}
+	.project.teaser div.right p {
+		clear: both;
+	}
+	table.respons tr {
+		width: 58%;
+	}
+	table.respons tr:first-child {
+		width: 40%;
+	}
+	table.respons td, table.respons th { white-space: wrap; }
+
+}
+
+@media screen and (max-width: 400px){
+	.orbit-wrapper .orbit-caption {
+		top: 0;
+	}
+	.orbit-caption h2 {
+		font-size: 20px;
+		line-height: 24px;
+	}
+	.nav-collapse.in.collapse {
+		padding-bottom: 5px;
+	}
+	div.slider-nav span {
+		top: 25%;
+	}
+	.orbit-wrapper .orbit-caption {
+		padding-top: 10px;
+/* 		margin-top: 144px; */
+		background: #000;
+	}
+	.orbit-wrapper.fluid .orbit, .orbit-wrapper.fluid {
+/* 		padding-bottom: 180px; */
+	}
+	.not-front .orbit-wrapper.fluid .orbit, .orbit-wrapper.fluid {
+		padding-bottom: 20px;
+	}
+	.not-front div.slider-nav span {
+		top: 50%;
+	}
+	.view-id-project_list_leaflet_map.view-display-id-page_1 div.item-list { padding-top: 55px; }
+}
+
+@media screen and (max-width: 399px){
+	.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+		width: 240px !important;
+	}
+	.leaflet-popup-content {
+		min-width: 223px;
+	}
+	.project.teaser .gray-bar p {
+		font-size: 10px;
+	}
+
+}
+

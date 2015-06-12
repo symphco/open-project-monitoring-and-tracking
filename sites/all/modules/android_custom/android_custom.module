@@ -1,0 +1,224 @@
+<?php
+
+/**
+ * @file
+ * A custom block module built for the android implementation of this site
+ */
+ /**
+ * Implements hook_help().
+ *
+ * Displays help and module information.
+ *
+ * @param path
+ *   Which path of the site we're using to display help
+ * @param arg
+ *   Array that holds the current path as returned from arg() function
+ */
+function android_custom_help($path, $arg) {
+  switch ($path) {
+    case "admin/help#android_custom":
+      return '<p>' . t("Custom module built to aid in displaying data on an android enabled device") . '</p>';
+      break;
+  }
+} 
+
+/**
+* Implements of hook_services_resources().
+*/
+function android_custom_services_resources() {
+  $api = array(
+    'android_extend' => array(
+      'operations' => array(),
+	  'actions' => array(
+	    'get_filter' => array(
+          'help' => 'Retrieves filter based on fileter name',
+          'callback' => '_adnroid_custom_get_filter',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'fn',
+              'type' => 'string',
+              'description' => 'Function to perform',
+              'source' => array('path' => '0'),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+            array(
+              'name' => 'filter_name',
+              'type' => 'string',
+              'description' => 'Name of the filter to retrieve... Send list for a list of filter_names',
+              'source' => array('param' => 'filter_name'),
+              'optional' => FALSE,
+            ),
+          ),
+        ),
+        'get_count' => array(
+          'help' => 'Retrieves number of items to be returned for a given tid',
+          'callback' => '_adnroid_custom_get_count',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'fn',
+              'type' => 'string',
+              'description' => 'Function to perform',
+              'source' => array('path' => '0'),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+            array(
+              'name' => 'tid',
+              'type' => 'int',
+              'description' => 'tid of items to get',
+              'source' => array('param' => 'tid'),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+          
+		'get_projects' => array(
+          'help' => 'Retrieves a number of projects and subprojects based on start index and number to retrieve',
+          'callback' => '_adnroid_custom_get_projects',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'fn',
+              'type' => 'string',
+              'description' => 'Function to perform',
+              'source' => array('path' => '0'),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+            array(
+              'name' => 'tid',
+              'type' => 'int',
+              'description' => 'Number in array at which to start',
+              'source' => array('param' => 'tid'),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+            array(
+              'name' => 'start',
+              'type' => 'int',
+              'description' => 'Number in array at which to start',
+              'source' => array('param' => 'start'),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+            array(
+              'name' => 'length',
+              'type' => 'int',
+              'description' => 'Number of items to retrieve',
+              'source' => array('param' => 'length'),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+  return
+
+$api;
+}
+
+
+
+/**
+* Callback function for get filter
+*/
+function _adnroid_custom_get_filter($fn, $ae_filer_name) {
+  // Check for mad values
+  $ae_filer_name = strval($ae_filer_name);
+  
+  $retVal = ($ae_filer_name == 'list') ? array('field_project',
+  										       'field_agency',
+  											   'field_gaa_year',
+  											   'field_project_status',
+  											   'field_project_type_label',
+  											   'field_budget',
+  											   'field_region',
+  											   'field_province',
+  											   'field_municiality_by_psgc') : adnroid_custom_get_filter($ae_filer_name);
+  return
+
+$retVal;
+}
+
+/**
+* Callback function for get count
+*/
+function _adnroid_custom_get_count($fn, $ae_tid) {
+  // Check for mad values
+  $ae_tid = intval($ae_tid);
+  return
+
+adnroid_custom_get_count($ae_tid);
+}
+
+/**
+* Callback function for get projects
+*/
+function _adnroid_custom_get_projects($fn, $ae_tid, $ae_start, $ae_length) {
+  // Check for mad values
+  $ae_tid = intval($ae_tid);
+  $ae_start = intval($ae_start);
+  $ae_length = intval($ae_length);
+  return
+
+adnroid_custom_get_projects($ae_tid, $ae_start, $ae_length);
+}
+
+
+
+/**
+* Gets filter by name
+*/
+function adnroid_custom_get_filter($ae_filer_name) {
+  // Compose query
+  $field = field_info_field($ae_filer_name);
+  return
+  
+$field;
+}
+
+/**
+* Gets stuff by things
+*/
+function adnroid_custom_get_count($ae_tid) {
+  // Compose query
+  $query = db_select('taxonomy_vocabulary', 't');
+  $query->fields('t', array('nid'));
+  $query->condition('t.tid', $ae_tid, '=');
+  $num_rows = $query->countQuery()->execute()->fetchField();
+  return
+
+$num_rows;
+}
+
+/**
+* Gets projects
+*/
+function adnroid_custom_get_projects($ae_tid, $ae_begin, $ae_length) {
+  // Compose query
+  $query = db_select('taxonomy_vocabulary', 't');
+  $query->fields('t', array('nid'));
+  $query->condition('t.tid', $ae_tid, '=');
+  
+  if ($nitems) {
+    $query->range($ae_begin, $ae_length);
+  }
+  $items = $query->execute()->fetchAll();
+  return
+
+$items;
+}
+
+
