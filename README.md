@@ -6,7 +6,7 @@ While the platform was sufficiently advanced in terms of programming and design 
 
 # Site Audit
 
-Prior to public release of the source code a site audit was performed in December 2015 by a third-party to assess the structure, issues and recommendations for future development. It is available within the repository and via a direct link: https://github.com/opengovt/open-project-monitoring-and-tracking/blob/master/2015-12-14-Open-Project-Site-Audit.pdf
+Prior to public release of the source code a site audit was performed in December 2015 by a third-party to assess the structure, issues and recommendations for future development. It is available within the repository and via a direct link: https://github.com/symph-team/open-project-monitoring-and-tracking/blob/master/2015-12-14-Open-Project-Site-Audit.pdf
 
 We strongly encourage that these recommendations be followed for all who would use this platform.
 
