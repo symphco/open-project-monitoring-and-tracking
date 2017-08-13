@@ -12,7 +12,7 @@ We strongly encourage that these recommendations be followed for all who would u
 
 # User Guides and Features
 
-User Guides and Features: https://opengovt.github.io/open-project-monitoring-and-tracking/
+User Guides and Features: http://symph-team.github.io/open-project-monitoring-and-tracking/
 
 
 ---
